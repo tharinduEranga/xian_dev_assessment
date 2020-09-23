@@ -1,13 +1,12 @@
 package com.xian.assessment.model.dto;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-@SuperBuilder
+@Builder
 public class CommonResponse<T> {
     private T content;
 }

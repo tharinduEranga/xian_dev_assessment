@@ -1,18 +1,15 @@
 package com.xian.assessment.model.dto;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-import lombok.experimental.SuperBuilder;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
-@SuperBuilder
+@Builder
 public class CartonDTO {
 
     private long id;
