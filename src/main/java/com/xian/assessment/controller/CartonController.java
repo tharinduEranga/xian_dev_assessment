@@ -22,11 +22,13 @@ public class CartonController {
 
     @GetMapping()
     public ResponseEntity<CommonResponse<List<CartonDTO>>> getCartons() {
+        log.info("End point:- Get cartons");
         return ResponseEntity.ok(new CommonResponse<>(cartonService.getCartonPrices()));
     }
 
     @PostMapping(value = "/calculate")
     public ResponseEntity<CommonResponse<BigDecimal>> getCartonCalculateAmount(@RequestBody CalculateRequest calculateRequest) {
+        log.info("End point:- Calculate carton amounts\tRequest: {}", calculateRequest);
         return ResponseEntity.ok(new CommonResponse<>(cartonService.getCalculatedPrice(calculateRequest)));
     }
 }

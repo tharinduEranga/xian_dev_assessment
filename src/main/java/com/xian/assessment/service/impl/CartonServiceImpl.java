@@ -90,8 +90,7 @@ public class CartonServiceImpl implements CartonService {
      * @return the unit price sum of the given count
      */
     private BigDecimal getUnitPriceSum(PriceStructure priceStructure, Carton carton, long unitCount) {
-        return carton.getPrice().multiply(priceStructure.getSingleUnitPriceIncrease())
-                .multiply(new BigDecimal(String.valueOf(unitCount)));
+        return getSingleUnitPrice(priceStructure, carton).multiply(new BigDecimal(String.valueOf(unitCount)));
     }
 
     /**
@@ -113,6 +112,16 @@ public class CartonServiceImpl implements CartonService {
     private Carton getCarton(long cartonId) {
         return cartonRepository.findById(cartonId)
                 .orElseThrow(() -> new CustomServiceException(HttpStatus.NOT_FOUND.value(), NO_CARTON_FOUND));
+    }
+
+    /**
+     * @param priceStructure the price structure data
+     * @param carton         the carton details
+     * @return the single unit price of a carton
+     */
+    private BigDecimal getSingleUnitPrice(PriceStructure priceStructure, Carton carton) {
+        return carton.getPrice().multiply(priceStructure.getSingleUnitPriceIncrease())
+                .divide(BigDecimal.valueOf(carton.getUnits()), 2, RoundingMode.CEILING);
     }
 
 }
