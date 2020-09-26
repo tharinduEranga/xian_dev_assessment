@@ -21,6 +21,7 @@ Prerequisites.
     * then the required dependencies will be downloaded.
     * after finishing run the application by right clicking the
     XianDevAssessmentApplication class.  
+====================================================================
 
     2. if using command line
     * go to the project folder.
