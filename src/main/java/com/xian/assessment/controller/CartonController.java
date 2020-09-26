@@ -2,6 +2,7 @@ package com.xian.assessment.controller;
 
 import com.xian.assessment.model.dto.CalculateRequest;
 import com.xian.assessment.model.dto.CartonDTO;
+import com.xian.assessment.model.dto.CartonNameDTO;
 import com.xian.assessment.model.dto.CommonResponse;
 import com.xian.assessment.service.CartonService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,18 @@ public class CartonController {
     public ResponseEntity<CommonResponse<List<CartonDTO>>> getCartons() {
         log.info("End point:- Get cartons");
         return ResponseEntity.ok(new CommonResponse<>(cartonService.getCartonPrices()));
+    }
+
+    @GetMapping(value = "/names")
+    public ResponseEntity<CommonResponse<List<CartonNameDTO>>> getCartonNames() {
+        log.info("End point:- Get carton names");
+        return ResponseEntity.ok(new CommonResponse<>(cartonService.getCartonNames()));
+    }
+
+    @GetMapping(value = "/{cartonId}")
+    public ResponseEntity<CommonResponse<CartonDTO>> getCartonById(@PathVariable("cartonId") long cartonId) {
+        log.info("End point:- Get carton by id\t ID: {}", cartonId);
+        return ResponseEntity.ok(new CommonResponse<>(cartonService.getCartonById(cartonId)));
     }
 
     @PostMapping(value = "/calculate")

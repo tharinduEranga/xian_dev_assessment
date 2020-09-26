@@ -3,6 +3,7 @@ package com.xian.assessment.service.impl;
 import com.xian.assessment.exception.CustomServiceException;
 import com.xian.assessment.model.dto.CalculateRequest;
 import com.xian.assessment.model.dto.CartonDTO;
+import com.xian.assessment.model.dto.CartonNameDTO;
 import com.xian.assessment.model.entity.Carton;
 import com.xian.assessment.model.entity.PriceStructure;
 import com.xian.assessment.repository.CartonRepository;
@@ -47,6 +48,27 @@ public class CartonServiceImpl implements CartonService {
     public List<CartonDTO> getCartonPrices() {
         List<Carton> cartonList = cartonRepository.findAll();
         return Arrays.asList(modelMapper.map(cartonList, CartonDTO[].class));
+    }
+
+    /**
+     * This method can use to get cartons name list from the database.
+     *
+     * @return the cartons names DTO list.
+     */
+    @Override
+    public List<CartonNameDTO> getCartonNames() {
+        return cartonRepository.getCartonNames();
+    }
+
+    /**
+     * This method can use to get a carton by given id from the database.
+     *
+     * @return the carton of the ID
+     */
+    @Override
+    public CartonDTO getCartonById(long cartonId) {
+        return modelMapper.map(cartonRepository.findById(cartonId)
+                .orElseThrow(() -> new CustomServiceException(404, NO_CARTON_FOUND)), CartonDTO.class);
     }
 
     /**
