@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.xian.assessment</groupId>
 	<artifactId>xian_dev_assessment_server</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-BETA</version>
 	<packaging>war</packaging>
 	<name>xian_dev_assessment_server</name>
 	<description>Dev assessment for the 99x</description>
